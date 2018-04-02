@@ -1,0 +1,4 @@
+CREATE TABLE contacto (id int(10) NOT NULL AUTO_INCREMENT, fono varchar(12) NOT NULL, run varchar(13) NOT NULL, fechaNacimiento date NOT NULL, nombre varchar(50) NOT NULL, apellido varchar(50) NOT NULL, fotoAvatar varchar(100) NOT NULL, direccion varchar(100), email varchar(100), residencia varchar(100), organizacion varchar(200), PRIMARY KEY (id));
+CREATE TABLE bitacora (id int(10) NOT NULL AUTO_INCREMENT, id_contacto int(10) NOT NULL, fechaBitacora date NOT NULL, titulo varchar(50) NOT NULL, detalle varchar(400) NOT NULL, PRIMARY KEY (id));
+CREATE TABLE usuario (id int(10) NOT NULL AUTO_INCREMENT, username varchar(20) NOT NULL, nombre varchar(100), password varchar(255) NOT NULL, PRIMARY KEY (id));
+ALTER TABLE bitacora ADD INDEX FKbitacora247376 (id_contacto), ADD CONSTRAINT FKbitacora247376 FOREIGN KEY (id_contacto) REFERENCES contacto (id);

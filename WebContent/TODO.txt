@@ -1,0 +1,10 @@
+ 
+ 1->Comprobar el error 500 en La recarga de listas ( Revisar si lista de contactos es nulo?) <- Debe tener fix. Revisar
+
+2-> BUSQUEDA (Basica por JS, avanzada para tomar mas  contactos) <- Por post, no ajax. Revisar
+
+3-> Login funcional: Cookies
+
+4->Redireccion correcta en las páginas <- Ta mitimota
+
+5-> Definir esquema de colores <-importa una wea

@@ -14,23 +14,76 @@
 	<title>Sistema de Agenda</title>
 </head>
 
-<body>
-<div class="container">
-	<div class="row">
-		<div class="col s6 offset-s4">
-			<h1> Sistema de Agenda </h1>
-		</div>
-	</div>
+<body class="lime lighten-3">
 	
-	<div class="row">
-		<div class="col s8">
-			<p> Aca iran ingresados los contactos en una lista o similar</p>
+	<nav class="light-green darken-1">
+		<div class="navWrapper ">
+		<a href="/" class="brand-logo">Agenda Web</a>
+		<ul id="nav-mobile" class=" right hide-on-med-and-down">
+			<li><a href="crearContacto.jsp"> Nuevo Contacto</a> </li>
+			<li><a href="listContacto"> Ver Contactos</a> </li>
+		</ul>
 		</div>
-		<div class="col s4">
-			<p> Acá estara la informacion del login base</p>
+	</nav>
+	
+<div class="container">
+
+	
+	<div class="row  loginBar" >
+		
+		<div class="col m6 offset-m4 s4 offset-s5 card-panel lime ">
+			<form class="loginSection" id="form-login">
+				<div class ="row  black-text ">
+					<div class="input-field col  m6 s12 ">
+						<input  id="loginUsername" name="username" type="text" class="validate">
+						<label for="loginUsername"> Usuario</label>
+					</div>
+					<div class="input-field col  m6 s12">
+						<label for="loginPassword"> Contraseña</label>
+						<input placeholder="Password" id="loginPassword" name="password" type="password" class="validate">
+					</div>
+					<div class="col s4 offset-s6 btn light-green darken-1 white-text" id="btnLogin"> <span> Login</span></div>
+				</div>
+			</form>
 		</div>
+		
+		
 	</div>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
+
+<script type="text/javascript">
+
+ $('#btnLogin').click(function(){
+	
+	$.ajax({
+	    url: 'LoginController', //la ruta donde se envia el form
+	    headers: {
+
+	    },
+	      type: 'POST', //tipo post
+	      data: {username: $("#loginUsername").val(),password: $("#loginPassword").val()},
+	    
+	      success: function(response) {
+	       console.log(response);
+	       if(response==true){
+	    	   console.log("Redirect aca a main");
+	    	   window.location.replace("listContacto");
+	       }else if(response==false){
+	    	      $('label[for="loginUsername"]').addClass('active');
+	    	      $('label[for="loginUsername"]').attr('data-error',"Error al Ingresar sesion");
+	    	      $('#loginUsername').removeClass('valid');
+	    	      $('#loginUsername').addClass('invalid');
+	    	      $('#loginPassword').removeClass('valid');
+	    	      $('#loginPassword').addClass('invalid');
+	       } 
+	      },
+	      error: function(response) {
+	      	console.log(response);
+	      }
+	});
+ });
+</script>
 </html>
